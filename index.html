@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Smalt - Déconnecter. Créer. Capturer.</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        smalt: '#003399',
+                        lavender: '#B28BD9',
+                        norway: '#A8C09B',
+                        terracotta: '#E2725B',
+                        springWood: '#F8F8F2',
+                    },
+                    fontFamily: {
+                        josefin: ['"Josefin Sans"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-panel {
+            background: rgba(248, 248, 242, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 51, 153, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Bouton actif */
+        .btn-tab-active {
+            color: #E2725B;
+            border-bottom: 2px solid #E2725B;
+        }
+        .btn-mobile-active {
+            background-color: #E2725B !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="bg-springWood font-sans text-smalt min-h-screen relative overflow-x-hidden">
+
+    <!-- Motifs décoratifs flottants -->
+    <img src="sketch1726752580886 (2)8.png" alt="" class="absolute top-20 -left-10 w-32 md:w-48 opacity-80 animate-pulse z-0 pointer-events-none" />
+    <img src="sketch17267525573325.png" alt="" class="absolute top-[40%] -right-12 w-40 md:w-56 opacity-80 animate-bounce z-0 pointer-events-none" style="animation-duration: 8s;" />
+    <img src="sketch1726752580886 (2)8.png" alt="" class="absolute bottom-20 right-10 w-24 md:w-32 opacity-60 rotate-45 z-0 pointer-events-none" />
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full glass-panel z-50 px-6 py-4 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3">
+            <img src="sketch1726752580886 (2).png" alt="Atelier Smalt Logo" class="h-10 md:h-12 object-contain" />
+        </div>
+        <div class="hidden md:flex gap-8 font-josefin font-semibold text-lg tracking-wide">
+            <button onclick="switchTab('hub')" class="tab-link hover:text-terracotta transition-colors btn-tab-active" id="link-hub">L'Atelier</button>
+            <button onclick="switchTab('ugc')" class="tab-link hover:text-terracotta transition-colors" id="link-ugc">Portfolio UGC</button>
+            <button onclick="switchTab('boutique')" class="tab-link hover:text-terracotta transition-colors" id="link-boutique">Créations</button>
+        </div>
+        <div class="flex gap-4">
+            <a href="#" class="p-2 rounded-full bg-smalt text-white hover:bg-terracotta transition">
+                <i data-lucide="instagram" class="w-5 h-5"></i>
+            </a>
+            <a href="mailto:contact@ateliersmalt.com" class="p-2 rounded-full bg-smalt text-white hover:bg-terracotta transition">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-28 pb-20 px-4 max-w-5xl mx-auto relative z-10">
+        
+        <!-- Hero Section -->
+        <section class="text-center flex flex-col items-center justify-center py-12 md:py-20">
+            <img src="sketch1726752524532.png" alt="Atelier Smalt Badge" class="w-40 h-40 md:w-56 md:h-56 object-contain mb-8 hover:scale-105 transition-transform duration-500" />
+            <h1 class="font-josefin text-4xl md:text-6xl font-bold text-smalt mb-4">
+                Déconnecter. Créer. Capturer.
+            </h1>
+            <p class="text-lg md:text-xl text-smalt/80 max-w-2xl mx-auto font-medium mb-8 leading-relaxed">
+                Bienvenue chez Atelier Smalt. L'espace pour arrêter de scroller, raviver sa créativité et transformer des moments éphémères en souvenirs tangibles.
+            </p>
+            
+            <!-- Mobile Navigation Tabs -->
+            <div class="md:hidden flex flex-wrap justify-center gap-3 w-full mb-8 font-josefin">
+                <button onclick="switchTab('hub')" id="mob-hub" class="px-5 py-2 rounded-full font-bold bg-white text-smalt border border-smalt/20 btn-mobile-active">Tutos & Liens</button>
+                <button onclick="switchTab('ugc')" id="mob-ugc" class="px-5 py-2 rounded-full font-bold bg-white text-smalt border border-smalt/20">UGC</button>
+                <button onclick="switchTab('boutique')" id="mob-boutique" class="px-5 py-2 rounded-full font-bold bg-white text-smalt border border-smalt/20">Boutique</button>
+            </div>
+        </section>
+
+        <!-- TAB 1 : LE HUB -->
+        <div id="tab-hub" class="tab-content active fade-in space-y-12">
+            <div class="text-center mb-10">
+                <h2 class="font-josefin text-3xl font-bold flex items-center justify-center gap-3">
+                    <i data-lucide="scissors" class="text-terracotta"></i> Dernières Créations & Astuces
+                </h2>
+                <p class="mt-2 text-smalt/70">Retrouvez les liens des produits utilisés dans mes vidéos TikTok !</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Vidéo 1 -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-smalt/10 hover:shadow-lg transition-shadow group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-lavender"></div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-josefin text-xl font-bold">✈️ Trousse de toilette optimisée</h3>
+                        <i data-lucide="play-circle" class="text-lavender group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <p class="text-sm text-smalt/70 mb-4">Voyager léger avec des produits mini et malins. Le guide ultime pour ne rien oublier sans s'encombrer.</p>
+                    <div class="space-y-2">
+                        <a href="#" class="block w-full text-center bg-springWood hover:bg-lavender hover:text-white text-smalt font-semibold py-2 rounded-xl text-sm transition-colors border border-lavender/30">🛍️ Flacons de voyage réutilisables</a>
+                        <a href="#" class="block w-full text-center bg-springWood hover:bg-lavender hover:text-white text-smalt font-semibold py-2 rounded-xl text-sm transition-colors border border-lavender/30">🧴 Mes mini-produits préférés</a>
+                    </div>
+                </div>
+
+                <!-- Vidéo 2 -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-smalt/10 hover:shadow-lg transition-shadow group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-terracotta"></div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-josefin text-xl font-bold">🎨 Palette maquillage aimantée DIY</h3>
+                        <i data-lucide="play-circle" class="text-terracotta group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <p class="text-sm text-smalt/70 mb-4">Créer soi-même une palette de voyage personnalisée. Moins de plastique, plus de praticité !</p>
+                    <div class="space-y-2">
+                        <a href="#" class="block w-full text-center bg-springWood hover:bg-terracotta hover:text-white text-smalt font-semibold py-2 rounded-xl text-sm transition-colors border border-terracotta/30">🧲 Acheter la palette aimantée vide</a>
+                        <a href="#" class="block w-full text-center bg-springWood hover:bg-terracotta hover:text-white text-smalt font-semibold py-2 rounded-xl text-sm transition-colors border border-terracotta/30">💄 Fards à dépotter recommandés</a>
+                    </div>
+                </div>
+                
+                <!-- Vidéo 3 -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-smalt/10 hover:shadow-lg transition-shadow group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-norway"></div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-josefin text-xl font-bold">🧶 Journal pour débuter le Crochet</h3>
+                        <i data-lucide="play-circle" class="text-norway group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <p class="text-sm text-smalt/70 mb-4">Comment je documente mes premiers points pour rester motivée. Apprendre un "new skill" en douceur.</p>
+                    <a href="#" class="block w-full text-center bg-smalt text-white hover:bg-norway font-semibold py-3 rounded-xl transition-colors mt-6">Découvrir le kit débutant idéal</a>
+                </div>
+
+                <!-- Vidéo 4 -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-smalt/10 hover:shadow-lg transition-shadow group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-smalt"></div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-josefin text-xl font-bold">✨ Créer son Vision Board</h3>
+                        <i data-lucide="play-circle" class="text-smalt group-hover:scale-110 transition-transform"></i>
+                    </div>
+                    <p class="text-sm text-smalt/70 mb-4">Matérialiser ses rêves avec des ciseaux, de la colle et de l'inspiration. La déconnexion par excellence.</p>
+                    <a href="#" class="block w-full text-center bg-springWood hover:bg-smalt hover:text-white text-smalt font-semibold py-3 rounded-xl transition-colors border border-smalt/30 mt-6">Télécharger mes templates gratuits</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2 : PORTFOLIO UGC -->
+        <div id="tab-ugc" class="tab-content fade-in space-y-10">
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-smalt/10">
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1 space-y-6">
+                        <span class="inline-block px-4 py-1 bg-lavender/20 text-lavender font-bold rounded-full text-sm tracking-wide">PORTFOLIO UGC</span>
+                        <h2 class="font-josefin text-3xl md:text-4xl font-bold">Travaillons ensemble.</h2>
+                        <p class="text-lg leading-relaxed text-smalt/80">
+                            Atelier Smalt, c'est une communauté engagée autour du bien-être, de la créativité et du faire soi-même. 
+                            Je crée du contenu authentique, esthétique et coloré pour des marques qui partagent mes valeurs.
+                        </p>
+                        <ul class="space-y-3 font-medium">
+                            <li class="flex items-center gap-3"><i data-lucide="sparkles" class="text-terracotta w-5 h-5"></i> Esthétique inspirée de l'art</li>
+                            <li class="flex items-center gap-3"><i data-lucide="video" class="text-lavender w-5 h-5"></i> Formats courts dynamiques (TikTok / Reels)</li>
+                            <li class="flex items-center gap-3"><i data-lucide="map-pin" class="text-norway w-5 h-5"></i> DIY, Art de vivre, Voyage, Déconnexion</li>
+                        </ul>
+                        <button class="bg-smalt text-white px-8 py-3 rounded-full font-bold hover:bg-terracotta transition-colors flex items-center gap-2">
+                            <i data-lucide="mail" class="w-5 h-5"></i> Demander mon Media Kit
+                        </button>
+                    </div>
+                    <div class="flex-1 w-full relative">
+                        <div class="aspect-[9/16] bg-gray-100 rounded-3xl overflow-hidden relative shadow-lg mx-auto max-w-[280px] border-4 border-smalt">
+                            <img src="003399.jpg" alt="Aperçu vidéo" class="w-full h-full object-cover opacity-80" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-smalt/80 to-transparent flex flex-col justify-end p-6 text-white">
+                                <span class="bg-terracotta text-xs font-bold px-2 py-1 rounded mb-2 w-fit">Exemple de vidéo</span>
+                                <h3 class="font-josefin text-xl font-bold mb-1">Unboxing Cricut Joy Xtra</h3>
+                                <p class="text-sm opacity-90">Format dynamique • ASMR • Mise en situation produit</p>
+                            </div>
+                            <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/30 backdrop-blur-sm p-4 rounded-full hover:bg-white/50 transition">
+                                <i data-lucide="play-circle" class="text-white w-12 h-12"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3 : BOUTIQUE -->
+        <div id="tab-boutique" class="tab-content fade-in text-center py-16 bg-white rounded-3xl shadow-sm border border-smalt/10 relative overflow-hidden">
+            <img src="sketch1726752580886 (2)8.png" alt="" class="absolute -top-10 -right-10 w-40 opacity-20" />
+            <i data-lucide="shopping-bag" class="w-16 h-16 text-norway mx-auto mb-6"></i>
+            <h2 class="font-josefin text-4xl font-bold mb-4">Souvenirs Tangibles</h2>
+            <p class="text-lg text-smalt/70 max-w-lg mx-auto mb-8">
+                Des créations artisanales uniques, des kits pour créer vous-même, et des objets pour matérialiser vos plus beaux moments. <br/><br/>
+                <span class="font-bold text-terracotta">La boutique ouvre très bientôt.</span>
+            </p>
+            <div class="inline-flex flex-col items-center gap-4 w-full max-w-sm mx-auto">
+                <input type="email" placeholder="Votre adresse email" class="w-full px-6 py-3 rounded-full border border-smalt/20 focus:outline-none focus:border-smalt bg-springWood" />
+                <button class="w-full bg-smalt text-white px-8 py-3 rounded-full font-bold hover:bg-norway transition-colors">
+                    Être averti(e) du lancement
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-smalt text-springWood py-12 relative z-10 rounded-t-[3rem] mt-12">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <img src="sketch1726752580886 (2).png" alt="Atelier Smalt Logo" class="h-8 object-contain filter invert brightness-0" />
+                <p class="text-sm opacity-80 text-center md:text-left max-w-xs">
+                    La marque qui aide à déconnecter et à "capturer la vie". Artisanat, DIY, et souvenirs concrets.
+                </p>
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="p-3 rounded-full bg-white/10 hover:bg-terracotta transition">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                </a>
+                <a href="mailto:contact@ateliersmalt.com" class="p-3 rounded-full bg-white/10 hover:bg-terracotta transition">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+        <div class="text-center text-sm opacity-50 mt-12 font-josefin">
+            © <span id="year"></span> Atelier Smalt. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script>
+        // Initialisation des icônes
+        lucide.createIcons();
+
+        // Année dynamique
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Gestion des onglets
+        function switchTab(tabId) {
+            // Cacher tous les contenus
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Afficher le contenu sélectionné
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            // Mise à jour des styles des boutons Desktop
+            document.querySelectorAll('.tab-link').forEach(link => {
+                link.classList.remove('btn-tab-active');
+            });
+            document.getElementById('link-' + tabId).classList.add('btn-tab-active');
+
+            // Mise à jour des styles des boutons Mobile
+            const mobileBtns = ['mob-hub', 'mob-ugc', 'mob-boutique'];
+            mobileBtns.forEach(id => {
+                document.getElementById(id).classList.remove('btn-mobile-active');
+            });
+            document.getElementById('mob-' + tabId).classList.add('btn-mobile-active');
+
+            // Scroll vers le haut doucement
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
